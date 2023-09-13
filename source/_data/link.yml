@@ -1,0 +1,24 @@
+- class_name: 亲友链接
+  class_desc: 亲友们的日常
+  link_list: 
+    - name: 逐渐呆滞
+      link: https://www.keeplover.top/
+      avatar: https://img.keeplover.top/anime-1505361-wallhere.com.png
+      descr: 快了，快了，快要找到了……
+      siteshot: https://img.keeplover.top/index.jpg
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Hexo
+      link: https://hexo.io/zh-tw/
+      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+      descr: 快速、简单且强大的网志框架
+      siteshot: https://cdn.jsdelivr.net/gh/Akilarlxh/ScreenShot@gh-pages/akilar.top.jpg
+- class_name: 网站
+  class_desc: 值得推荐的网站
+  link_list:
+    - name: materialui配色网
+      link: https://materialui.co/colors/
+      avatar: https://img0.baidu.com/it/u=3505849762,1924768441&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=347
+      descr: 为ui调配颜色
+      siteshot: https://img0.baidu.com/it/u=3505849762,1924768441&fm=253&fmt=auto&app=138&f=JPEG?w=499&h=347
