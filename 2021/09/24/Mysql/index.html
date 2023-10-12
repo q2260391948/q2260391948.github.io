@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mysql笔记 | keep Study</title><meta name="author" content="小张,2260391948@qq.com"><meta name="copyright" content="小张"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql笔记">
+<meta property="og:url" content="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/2021/09/24/Mysql/index.html">
+<meta property="og:site_name" content="keep Study">
+<meta property="og:description" content="Mysql">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/img/cover.png">
+<meta property="article:published_time" content="2021-09-24T02:29:58.000Z">
+<meta property="article:modified_time" content="2023-10-12T12:13:26.515Z">
+<meta property="article:author" content="小张">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/img/cover.png"><link rel="shortcut icon" href="/./img/favicon.png"><link rel="canonical" href="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/2021/09/24/Mysql/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"该文章创建于","messageNext":"天前,请以最新的文章为准"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mysql笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-12 20:13:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet"><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4185042_s9i9e08l3w.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/style.css"><span id="fps"></span><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/xlenco/JS-X@main/pace.js/pace.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:randomPost();"><i class="fa-fw iconfont icon-iconzhengli-"></i><span> 随机访问</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-LINKS"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-aixin"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/./img/cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="keep Study"><span class="site-name">keep Study</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="iconfont icon-sousuo"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:randomPost();"><i class="fa-fw iconfont icon-iconzhengli-"></i><span> 随机访问</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-LINKS"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-aixin"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Mysql笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-24T02:29:58.000Z" title="发表于 2021-09-24 10:29:58">2021-09-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-12T12:13:26.515Z" title="更新于 2023-10-12 20:13:26">2023-10-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Mysql/">Mysql</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Mysql笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="展示所有数据库"><a href="#展示所有数据库" class="headerlink" title="展示所有数据库"></a>展示所有数据库</h2><p>SHOW DATABASES;</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>CREATE  DATABASE if not EXISTS 名称;</p>
+<h2 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h2><p>drop DATABASE if exists 名称;</p>
+<h2 id="修改数据库编码"><a href="#修改数据库编码" class="headerlink" title="修改数据库编码"></a>修改数据库编码</h2><p>ALTER DATABASE test CHARACTER set utf8</p>
+<h2 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h2><p>use +  数据库名称</p>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><p>— 创建表<br>create table if not EXISTS Student(<br>    sid int,<br>    name VARCHAR(20),<br>    gender VARCHAR(20),<br>    age int,<br>    birth date,<br>    address VARCHAR(20),<br>    sorce double<br>);</p>
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><p>drop table 表名称</p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>tinyint unsigned</p>
+<p>tinyint 表示小整数值类型 （有符号   -128到127）无符号（0-255）</p>
+<p>unsigned 表示无符号</p>
+<h2 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h2><p>date      准确到天</p>
+<p>datetime     准确到当前时间</p>
+<p>timestamp     准确到当前时区秒</p>
+<h2 id="查看数据库中的表"><a href="#查看数据库中的表" class="headerlink" title="查看数据库中的表"></a>查看数据库中的表</h2><p>—  查看当前数据库所有的表<br>show tables;<br>— 查看指定表的创建语句<br>show create table student;</p>
+<p>结果如下：</p>
+<p>CREATE TABLE <code>student</code> (<br>  <code>sid</code> int(11) DEFAULT NULL,<br>  <code>name</code> varchar(20) DEFAULT NULL,<br>  <code>gender</code> varchar(20) DEFAULT NULL,<br>  <code>age</code> int(11) DEFAULT NULL,<br>  <code>birth</code> date DEFAULT NULL,<br>  <code>address</code> varchar(20) DEFAULT NULL,<br>  <code>sorce</code> double DEFAULT NULL<br>) ENGINE=InnoDB DEFAULT CHARSET=utf8</p>
+<h2 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h2><p>desc 表名称;</p>
+<h2 id="增加数据"><a href="#增加数据" class="headerlink" title="增加数据"></a>增加数据</h2><p>1、为指定的列添加数据（括号里面一一对应）</p>
+<p>insert into student (sid,name,age) values (1,’zxq’,16);</p>
+<p>2、为所有列添加数据</p>
+<p>insert into student values (1,’sss’,’85’,25,’2002-06-09’,’河南省济源市’,85.5);</p>
+<p>添加数据时可以一次添加多个数据</p>
+<p>insert into student (sid,name,age) values (1,’zxq’,16)，</p>
+<p>(1,’zxq’,16)，(1,’zxq’,16)，(1,’zxq’,16);</p>
+<h2 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h2><p>— 添加限制修改<br>update student set name=’cgx’ where name=’sss’;<br>— 所有数据修改<br>update student set name=’大王的’;</p>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><p>— 限制 删除<br>delete from student where age=16;<br>— 删除表中所有数据<br>delete from student;</p>
+<p>truncate student;</p>
+<p>delete与truncate 原理不同，delete时单纯的删除表中数据，truncate是删除所有数据再创建一个新表</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>1、select <em>from student where sid = 1;<br>select </em>from student;</p>
+<p>2、查询某一列</p>
+<p>select 列 from 表名</p>
+<p>3、别名查询，使用关键字as（as可以省略）</p>
+<p>select * from 表名 as 别名</p>
+<p>select * from 表名   别名  </p>
+<p>别名在多表查询会用到</p>
+<p>4、列别名</p>
+<p>select  name as ‘名字’ , salary as ‘价钱’ from employee</p>
+<p>5、去掉重复值查询</p>
+<p>distinct 关键字查询</p>
+<p>select distinct name from employee</p>
+<p>多条一摸一样的数据会进行剔除查询</p>
+<p>select distinct * from employee</p>
+<p>6、查询结果表达式</p>
+<p>select name ‘名字’,salary+10 new_price from employee</p>
+<h2 id="设置主键（唯一不为空）"><a href="#设置主键（唯一不为空）" class="headerlink" title="设置主键（唯一不为空）"></a>设置主键（唯一不为空）</h2><p>create table if not exists employee(<br>    id int primary key,   设置主键<br>    name varchar(10),<br>    gender varchar(10),<br>    salary double,<br>— constraint pk1 primary key(id)  设置主键 constraint pk1可以省略<br>);</p>
+<h2 id="添加联合主键"><a href="#添加联合主键" class="headerlink" title="添加联合主键"></a>添加联合主键</h2><p> primary key(字段1，字段2) </p>
+<p>联合主的各列都不能为空！！！</p>
+<p>alter table employee add primary key(id,name);</p>
+<h2 id="删除（联合）主键"><a href="#删除（联合）主键" class="headerlink" title="删除（联合）主键"></a>删除（联合）主键</h2><p>alter table 表名 drop primary key;</p>
+<h2 id="主键自动增长"><a href="#主键自动增长" class="headerlink" title="主键自动增长"></a>主键自动增长</h2><p>id int primary key auto_increment</p>
+<p>从一开始增长</p>
+<h2 id="自增长约束初始化"><a href="#自增长约束初始化" class="headerlink" title="自增长约束初始化"></a>自增长约束初始化</h2><p>两种方式，一种是在创建表时候添加</p>
+<p>create table if not exists employee(<br>    id int primary key auto_increment,<br>    name varchar(10),<br>    gender varchar(10),<br>    salary double<br>—     constraint pk1 primary(id)  设置主键 constraint pk1可以省略<br>)auto_increment=100;</p>
+<p>另一种是创建完表之后添加</p>
+<p>alter table employee auto_increment=200;</p>
+<h2 id="自增长下删除数据"><a href="#自增长下删除数据" class="headerlink" title="自增长下删除数据"></a>自增长下删除数据</h2><p><strong>delete 会从自动增长的断点开始，truncate 是删除表后重新从1开始，无论主键默认值是什么</strong></p>
+<h2 id="添加非空约束"><a href="#添加非空约束" class="headerlink" title="添加非空约束"></a>添加非空约束</h2><p>两种方式：</p>
+<p>1、在创建表时候在字段后面添加not null</p>
+<p>2、在创建表后设置，即</p>
+<p>alter table employee modify name varchar(10) not null;</p>
+<h2 id="删除非空约束"><a href="#删除非空约束" class="headerlink" title="删除非空约束"></a>删除非空约束</h2><p>alter table employee modify name varchar(10) ；</p>
+<p>即去掉后面的not null</p>
+<h2 id="添加唯一约束"><a href="#添加唯一约束" class="headerlink" title="添加唯一约束"></a>添加唯一约束</h2><p>1、在创建表时候在字段后面添加unique</p>
+<p>2、在创建表后添加</p>
+<p>alter table employee add constraint 约束名（自己起）unique(gender);</p>
+<p>删除唯一约束：</p>
+<p>alter table employee drop index 约束名;</p>
+<h2 id="默认约束"><a href="#默认约束" class="headerlink" title="默认约束"></a>默认约束</h2><p>— 添加默认值<br>alter table employee modify salary double default 18;</p>
+<p>注意添加数据指明</p>
+<p>insert into employee(id,name,gender) values(3,’ss’,’dd’);</p>
+<h2 id="条件查找"><a href="#条件查找" class="headerlink" title="条件查找"></a>条件查找</h2><p>1、不等于</p>
+<p>！=    或者    &lt;&gt;  或者   NOT （查询条件）</p>
+<p>2、两者之间</p>
+<p>between  and  或者  and  或者  &amp;&amp;</p>
+<p>3、二者其一</p>
+<p>in (200,800)  或者  条件  or  条件   或者   条件||条件</p>
+<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h2><p>1、select max(列名)  from  表名     </p>
+<!--最大值-->
+<p>2、select min(列名)  from  表名     </p>
+<!--最小值-->
+<p>3、select count(*)  from  表名     </p>
+<!--求数据个数-->
+<p>4、select sum(列名)  from  表名     </p>
+<!--最和-->
+<p>5、select avg(列名)  from  表名     </p>
+<!--最平均值-->
+<p>select max(age) from student;</p>
+<p>select sum(sorce) from student;</p>
+<p>select avg(sorce) from student;</p>
+<p>— 根据性别分组去求平均值<br>select gender,avg(sorce),count(<em>) from student GROUP BY gender;<br>— 加上约束<br>select gender,avg(sorce),count(</em>) from student where sorce &lt;&gt;99.8 GROUP BY gender;<br>— having用法<br>select gender,avg(sorce),count(<em>) from student where sorce &lt;&gt;99.8 group by gender having count(</em>)=1;</p>
+<p>执行顺序：  where&gt;聚合函数&gt; having</p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>— 分页查询<br>select * from student limit 0,3;</p>
+<p>下标从0开始，每页开头下标计算公式为  ：（当前页码-1）*每页展示内容数量</p>
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>— 模糊查询<br>select * from student where address like ‘%济源%’;</p>
+<h2 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h2><p>ALTER TABLE &lt;数据表名&gt; ADD CONSTRAINT &lt;外键名&gt; FOREIGN KEY(&lt;列名&gt;) REFERENCES &lt;主表名&gt; (&lt;列名&gt;);</p>
+<h2 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h2><p>ALTER TABLE &lt;表名&gt; DROP FOREIGN KEY &lt;外键约束名&gt;;</p>
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><p>内查询，即两个表的交集</p>
+<p>外查询</p>
+<h2 id="内连接和外连接"><a href="#内连接和外连接" class="headerlink" title="内连接和外连接"></a>内连接和外连接</h2><p>显式内连接：</p>
+<p>select * from 表名 inner join 表名 on 表名.列名=表名.列名</p>
+<p>隐式内连接：</p>
+<p>select *from 表名 ，表名 where 表名.列名=表名.列名</p>
+<p>起别名：</p>
+<p>select    新命名.列名，新命名.列名  from 表名  新命名，表名 新命名 where 新命名.列名=新命名.列名</p>
+<p>左外连接：</p>
+<p>select *from 表名 left join 表名 on 表名.列名=表名.列名</p>
+<p>右外连接：</p>
+<p>select *from 表名 right join 表名 on 表名.列名=表名.列名</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>即嵌套查询，根据查询结果不同，作用也不同。</p>
+<p>单行单列：作为条件值，使用=！=&gt;&lt;等进行条件判断</p>
+<p>select 字段列表 from 表 where 字段名=（子查询）</p>
+<p>多行单列：作为条件值，使用in等关键字进行判断</p>
+<p>select 字段列表 from 表 where 字段名 in （子查询）</p>
+<p>多行多列：作为虚拟表</p>
+<p>select 字段列表 from （子查询） where 条件</p>
+<h2 id="UNION-和-UNION-ALL-操作符"><a href="#UNION-和-UNION-ALL-操作符" class="headerlink" title="UNION 和 UNION ALL 操作符"></a>UNION 和 UNION ALL 操作符</h2><p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。</p>
+<p>默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。</p>
+<p>UNION会将数据集合中数据按照第一个列升序排列，UNION ALL不会排序</p>
+<p>并集编写时的注意点</p>
+<p>1).前后数据集合的列的个数和数据类型应一致<br>2).UNION 会按照第一个列升序排列<br>3).最终的数据结果显示以第一个数据集合中的列的名称显示</p>
+<h2 id="SQL中if函数使用技巧"><a href="#SQL中if函数使用技巧" class="headerlink" title="SQL中if函数使用技巧"></a>SQL中if函数使用技巧</h2><p>语法：IF(expr1,expr2,expr3)</p>
+<p>其中，expr1是判断条件，expr2和expr3是符合expr1的自定义的返回结果。</p>
+<p>用处：当从数据库中查询出来的结果需要转换成中文或是其他自定义的格式显示在网页上的时候，可以直接在sql中处理</p>
+<h2 id="SQL中EXTRACT-函数"><a href="#SQL中EXTRACT-函数" class="headerlink" title="SQL中EXTRACT() 函数"></a>SQL中EXTRACT() 函数</h2><p><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/sql/func_extract.asp"><strong>EXTRACT()</strong>(</a>“提取”的意思) 函数用于返回日期/时间的单独部分，比如年、月、日、小时、分钟等等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 SELECT EXTRACT(YEAR FROM OrderDate) AS OrderYear,</span><br><span class="line">2 EXTRACT(MONTH FROM OrderDate) AS OrderMonth,</span><br><span class="line">3 EXTRACT(DAY FROM OrderDate) AS OrderDay</span><br><span class="line">4 FROM Orders</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-ORDER-BY-子句"><a href="#SQL-ORDER-BY-子句" class="headerlink" title="SQL ORDER BY 子句"></a>SQL ORDER BY 子句</h2><h3 id="ORDER-BY-语句"><a href="#ORDER-BY-语句" class="headerlink" title="ORDER BY 语句"></a>ORDER BY 语句</h3><p>ORDER BY 语句用于根据指定的列对结果集进行排序。</p>
+<p>ORDER BY 语句默认按照升序对记录进行排序。</p>
+<p>如果您希望按照降序对记录进行排序，可以使用 DESC 关键字。</p>
+<h2 id="SQL-GROUP-BY-语句"><a href="#SQL-GROUP-BY-语句" class="headerlink" title="SQL GROUP BY 语句"></a>SQL GROUP BY 语句</h2><p>GROUP BY 语句用于结合聚合函数，根据一个或多个列对结果集进行分组。</p>
+<h2 id="sql-Case-语句"><a href="#sql-Case-语句" class="headerlink" title="sql Case 语句"></a><strong>sql Case</strong> 语句</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_53222768/article/details/120101414">https://blog.csdn.net/m0_53222768/article/details/120101414</a></p>
+<p>1.简单Case函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CASE sex	</span><br><span class="line">     WHEN &#x27;1&#x27; THEN &#x27;男&#x27;</span><br><span class="line">     WHEN &#x27;2&#x27; THEN &#x27;女&#x27; ELSE &#x27;其他&#x27; END</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+<p>2.Case搜索函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN sex = &#x27;1&#x27; THEN &#x27;男&#x27;</span><br><span class="line">     WHEN sex = &#x27;2&#x27; THEN &#x27;女&#x27;ELSE &#x27;其他&#x27; END</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<p>3.简单case函数 VS case搜索函数</p>
+<ul>
+<li>这两种方式，可以实现相同的功能。简单Case函数的写法相对比较简洁，但是和Case搜索函数相比，功能方面会有些限制，比如写判断式。</li>
+<li>还有一个需要注意的问题，Case函数只返回第一个符合条件的值，剩下的Case部分将会被自动忽略。</li>
+<li>–比如说，下面这段SQL，你永远无法得到”第二类”这个结果</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CASE </span><br><span class="line">	WHEN col_1 IN ( &#x27;a&#x27;, &#x27;b&#x27;) THEN &#x27;第一类&#x27;</span><br><span class="line">	WHEN col_1 IN (&#x27;a&#x27;)  THEN &#x27;第二类&#x27;</span><br><span class="line">	ELSE&#x27;其他&#x27; END</span><br><span class="line">1234</span><br></pre></td></tr></table></figure>
+<p>4.使用Case函数都能做些什么事。</p>
+<p>4.1：已知数据按照另外一种方式进行分组、分析。</p>
+<ul>
+<li>有如下数据:(为了看得更清楚，我并没有使用国家代码，而是直接用国家名作为Primary Key)<br><img src="https://img-blog.csdnimg.cn/2190129ac3ba49629d627c6ab4009f45.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiA6LSk5LiN56m_5bCP6Z6L,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></li>
+<li>根据这个国家人口数据，统计亚洲和北美洲的人口数量。应该得到下面这个结果。<br><img src="https://img-blog.csdnimg.cn/8965df41ee0048e9a08a9905729fd9ef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiA6LSk5LiN56m_5bCP6Z6L,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></li>
+<li>想要解决这个问题，你会怎么做？生成一个带有洲Code的View，是一个解决方法，但是这样很难动态的改变统计的方式。</li>
+<li>如果使用Case函数，SQL代码如下:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">SELECT   SUM(population),</span><br><span class="line">  CASE country</span><br><span class="line">       WHEN &#x27;中国&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;印度&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;日本&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;美国&#x27;     THEN &#x27;北美洲&#x27;</span><br><span class="line">       WHEN &#x27;加拿大&#x27;  THEN &#x27;北美洲&#x27;</span><br><span class="line">       WHEN &#x27;墨西哥&#x27;  THEN &#x27;北美洲&#x27; ELSE &#x27;其他&#x27; END</span><br><span class="line">FROM     Table_A</span><br><span class="line">GROUP BY CASE country</span><br><span class="line">        WHEN &#x27;中国&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;印度&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;日本&#x27;     THEN &#x27;亚洲&#x27;</span><br><span class="line">       WHEN &#x27;美国&#x27;     THEN &#x27;北美洲&#x27;</span><br><span class="line">       WHEN &#x27;加拿大&#x27;  THEN &#x27;北美洲&#x27;</span><br><span class="line">       WHEN &#x27;墨西哥&#x27;  THEN &#x27;北美洲&#x27; ELSE &#x27;其他&#x27; END</span><br><span class="line">12345678910111213141516</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同样的，我们也可用来判断工资的等级，并统计每一等级的人数。SQL代码如下；</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT   CASE WHEN salary &lt;= 500 THEN &#x27;1&#x27;    </span><br><span class="line">              WHEN salary &gt; 500 AND salary &lt;= 600  THEN &#x27;2&#x27;         </span><br><span class="line">              WHEN salary &gt; 600 AND salary &lt;= 800  THEN &#x27;3&#x27;          </span><br><span class="line">              WHEN salary &gt; 800 AND salary &lt;= 1000 THEN &#x27;4&#x27;     </span><br><span class="line">         ELSE NULL END</span><br><span class="line">  salary_class,  COUNT(*)  FROM    Table_A  </span><br><span class="line">GROUP BY  CASE  WHEN salary &lt;= 500 THEN &#x27;1&#x27; </span><br><span class="line">              WHEN salary &gt; 500 AND salary &lt;= 600  THEN &#x27;2&#x27; </span><br><span class="line">              WHEN salary &gt; 600 AND salary &lt;= 800  THEN &#x27;3&#x27; </span><br><span class="line">              WHEN salary &gt; 800 AND salary &lt;= 1000 THEN &#x27;4&#x27;</span><br><span class="line">          ELSE NULL END;</span><br><span class="line">1234567891011</span><br></pre></td></tr></table></figure>
+<p>4.2：用一个SQL语句完成不同条件的分组。</p>
+<ul>
+<li>有如下数据<br><img src="https://img-blog.csdnimg.cn/85628bb8017b41e8af97bc5751528a89.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiA6LSk5LiN56m_5bCP6Z6L,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></li>
+<li>按照国家和性别进行分组，得出结果如下<br><img src="https://img-blog.csdnimg.cn/f1926b5917574181bded7680431d0e9b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5LiA6LSk5LiN56m_5bCP6Z6L,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></li>
+<li>普通情况下，用UNION也可以实现用一条语句进行查询。但是那样增加消耗(两个Select部分)，而且SQL语句会比较长。</li>
+<li>下面是一个是用Case函数来完成这个功能的例子</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT country,</span><br><span class="line">		SUM( CASE WHEN sex = &#x27;1&#x27; THEN  population ELSE 0 END),  --男性人口</span><br><span class="line">        SUM( CASE WHEN sex = &#x27;2&#x27; THEN  population ELSE 0 END)   --女性人口</span><br><span class="line">		FROM   Table_A  </span><br><span class="line">		GROUP BY country;</span><br><span class="line">12345</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样我们使用Select，完成对二维表的输出形式，充分显示了Case函数的强大。</li>
+</ul>
+<p>4.3：在Check中使用Case函数。</p>
+<ul>
+<li>在Check中使用Case函数在很多情况下都是非常不错的解决方法。可能有很多人根本就不用Check，那么我建议你在看过下面的例子之后也尝试一下在SQL中使用Check。</li>
+<li>下面我们来举个例子<br>公司A，这个公司有个规定，女职员的工资必须高于1000块。如果用Check和Case来表现的话，如下所示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CONSTRAINT check_salary </span><br><span class="line">CHECK  ( </span><br><span class="line">		CASE WHEN sex = &#x27;2&#x27;  THEN </span><br><span class="line">		CASE WHEN salary &gt; 1000  THEN 1 </span><br><span class="line">		ELSE 0 </span><br><span class="line">		END	ELSE 1 END = 1 )</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果单纯使用Check，如下所示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CONSTRAINT check_salary </span><br><span class="line">CHECK  ( sex = &#x27;2&#x27; AND salary &gt; 1000 )</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<ul>
+<li>女职员的条件倒是符合了，男职员就无法输入了。</li>
+</ul>
+<p>例子：根据 book表中的库存量显示每本书的库存信息，当库存量大于100时，显示库京充民,否皿显示库存量低,并按照库存量顺序显示。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Book.bookName,Publisher.PublisherName,stocks, <span class="keyword">case</span> <span class="keyword">when</span> Book.stocks<span class="operator">&gt;</span><span class="number">100</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">then</span> <span class="string">&#x27;库存充足&#x27;</span> <span class="keyword">when</span> Book.stocks<span class="operator">&lt;</span><span class="number">100</span> <span class="keyword">then</span> <span class="string">&#x27;库存不足&#x27;</span> <span class="keyword">end</span> <span class="keyword">from</span> Book,Publisher </span><br><span class="line"></span><br><span class="line"><span class="keyword">where</span> Book.PublisherID<span class="operator">=</span>Publisher.PublisherID</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com">小张</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/2021/09/24/Mysql/">https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/2021/09/24/Mysql/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com" target="_blank">keep Study</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="/./img/cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/24/Redis%E7%AC%94%E8%AE%B0/" title="Redis笔记"><img class="cover" src="/./img/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Redis笔记</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/17/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="java基础知识"><img class="cover" src="/./img/cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">java基础知识</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/12/SpringCloud01/" title="SpringCloudDay1"><img class="cover" src="/./img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-12</div><div class="title">SpringCloudDay1</div></div></a></div><div><a href="/2023/09/14/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" title="SpringCloudDay2"><img class="cover" src="/./img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-14</div><div class="title">SpringCloudDay2</div></div></a></div><div><a href="/2022/12/24/Redis%E7%AC%94%E8%AE%B0/" title="Redis笔记"><img class="cover" src="/./img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-24</div><div class="title">Redis笔记</div></div></a></div><div><a href="/2023/07/24/RabbitMq/" title="RabbitMQ笔记"><img class="cover" src="/./img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-24</div><div class="title">RabbitMQ笔记</div></div></a></div><div><a href="/2021/09/17/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="java基础知识"><img class="cover" src="/./img/cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-17</div><div class="title">java基础知识</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81ODc3NS8zNTIzNw=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小张</div><div class="author-info__description">记录代码日常</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://keepcheerful.github.io/" target="_blank" title="Github"><i class="iconfont icon-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql"><span class="toc-number">1.</span> <span class="toc-text">Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">展示所有数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text">删除数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">修改数据库编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.</span> <span class="toc-text">切换数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.6.</span> <span class="toc-text">创建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">1.7.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.8.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">时间类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8"><span class="toc-number">1.10.</span> <span class="toc-text">查看数据库中的表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.11.</span> <span class="toc-text">查看表结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E6%95%B0%E6%8D%AE"><span class="toc-number">1.12.</span> <span class="toc-text">增加数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">1.13.</span> <span class="toc-text">修改操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.14.</span> <span class="toc-text">删除数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-number">1.15.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%94%AE%EF%BC%88%E5%94%AF%E4%B8%80%E4%B8%8D%E4%B8%BA%E7%A9%BA%EF%BC%89"><span class="toc-number">1.16.</span> <span class="toc-text">设置主键（唯一不为空）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE"><span class="toc-number">1.17.</span> <span class="toc-text">添加联合主键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%EF%BC%88%E8%81%94%E5%90%88%EF%BC%89%E4%B8%BB%E9%94%AE"><span class="toc-number">1.18.</span> <span class="toc-text">删除（联合）主键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE%E8%87%AA%E5%8A%A8%E5%A2%9E%E9%95%BF"><span class="toc-number">1.19.</span> <span class="toc-text">主键自动增长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E%E9%95%BF%E7%BA%A6%E6%9D%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.20.</span> <span class="toc-text">自增长约束初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E%E9%95%BF%E4%B8%8B%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="toc-number">1.21.</span> <span class="toc-text">自增长下删除数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.22.</span> <span class="toc-text">添加非空约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.23.</span> <span class="toc-text">删除非空约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.24.</span> <span class="toc-text">添加唯一约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.25.</span> <span class="toc-text">默认约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E6%89%BE"><span class="toc-number">1.26.</span> <span class="toc-text">条件查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">1.27.</span> <span class="toc-text">聚合函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.28.</span> <span class="toc-text">分页查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.29.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE"><span class="toc-number">1.30.</span> <span class="toc-text">添加外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%A4%96%E9%94%AE"><span class="toc-number">1.31.</span> <span class="toc-text">删除外键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.32.</span> <span class="toc-text">多表查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5%E5%92%8C%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.33.</span> <span class="toc-text">内连接和外连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.34.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UNION-%E5%92%8C-UNION-ALL-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">1.35.</span> <span class="toc-text">UNION 和 UNION ALL 操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E4%B8%ADif%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-number">1.36.</span> <span class="toc-text">SQL中if函数使用技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E4%B8%ADEXTRACT-%E5%87%BD%E6%95%B0"><span class="toc-number">1.37.</span> <span class="toc-text">SQL中EXTRACT() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-ORDER-BY-%E5%AD%90%E5%8F%A5"><span class="toc-number">1.38.</span> <span class="toc-text">SQL ORDER BY 子句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ORDER-BY-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.38.1.</span> <span class="toc-text">ORDER BY 语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-GROUP-BY-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.39.</span> <span class="toc-text">SQL GROUP BY 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql-Case-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.40.</span> <span class="toc-text">sql Case 语句</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/14/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" title="SpringCloudDay2"><img src="/./img/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloudDay2"/></a><div class="content"><a class="title" href="/2023/09/14/SpringCloud%E5%AE%9E%E7%94%A8%E7%AF%8702/" title="SpringCloudDay2">SpringCloudDay2</a><time datetime="2023-09-14T02:29:58.000Z" title="发表于 2023-09-14 10:29:58">2023-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/12/hello-world/" title="Hello World"><img src="/./img/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/09/12/hello-world/" title="Hello World">Hello World</a><time datetime="2023-09-12T09:32:40.000Z" title="发表于 2023-09-12 17:32:40">2023-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/12/SpringCloud01/" title="SpringCloudDay1"><img src="/./img/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloudDay1"/></a><div class="content"><a class="title" href="/2023/09/12/SpringCloud01/" title="SpringCloudDay1">SpringCloudDay1</a><time datetime="2023-09-12T02:29:58.000Z" title="发表于 2023-09-12 10:29:58">2023-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/RabbitMq/" title="RabbitMQ笔记"><img src="/./img/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ笔记"/></a><div class="content"><a class="title" href="/2023/07/24/RabbitMq/" title="RabbitMQ笔记">RabbitMQ笔记</a><time datetime="2023-07-24T02:29:58.000Z" title="发表于 2023-07-24 10:29:58">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/24/Redis%E7%AC%94%E8%AE%B0/" title="Redis笔记"><img src="/./img/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis笔记"/></a><div class="content"><a class="title" href="/2022/12/24/Redis%E7%AC%94%E8%AE%B0/" title="Redis笔记">Redis笔记</a><time datetime="2022-12-24T02:29:58.000Z" title="发表于 2022-12-24 10:29:58">2022-12-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 小张</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><div>本网站由<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"> <img class="cdn" src="./img/youpaiyun.png" /></a>提供CDN加速/云储存服务<div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><script src="/js/debounce.js" async></script><script src="/js/sun_moon.js" async></script><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script type="text/javascript" src="/js/rightmenu.js"></script><script src="/js/footer.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><div id="music-player" class="aplayer no-destroy" data-id="8418044320" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script async src="/js/snow.js"></script><script src="/js/star.js"></script><script src="/js/copy.js"></script><script async src="/js/fps.js"></script><script src="/js/random.js"></script><script async src="//at.alicdn.com/t/c/font_4185042_s9i9e08l3w.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><a class="magnet_link_more"  href="https://my-bucket-pv30eln-1315165253.cos-website.ap-guangzhou.myqcloud.com/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = '982e2f357e344923beb3175e4b012b6d';
+  var gaud_map_key = '2c2137f367e0748bc2e4317025f9ad38';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '1s');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
